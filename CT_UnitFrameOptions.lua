@@ -14,8 +14,8 @@ CT_UnitFramesOptions = {
 			{ 1, 1, 1, 1, 1},
 		},
 		[3] = { -- Box
-			{ 1, 1, 1, 1, 1}, -- Selections
-			{ 1, 1, 1, 1, 1},
+			{ 1, 1, 1, 1, 1, 1}, -- Selections
+			{ 1, 1, 1, 1, 1, 1},
 		},
 		[4] = { -- Box
 			{ 1, 1, 1, 1, 1}, -- Selections
@@ -44,6 +44,8 @@ function CT_UnitFramesOptions_Box_OnLoad()
 	getglobal(this:GetName() .. "Name"):SetText(CT_UFO_BOX[this:GetID()]);
 	if ( this:GetID() == 3 ) then
 		getglobal(this:GetName() .. "ClassFrameCBName"):SetText(CT_UFO_TARGETCLASS);
+		getglobal(this:GetName() .. "Selection1Radio5"):Show();
+		getglobal(this:GetName() .. "Selection2Radio5"):Show();
 	end
 end
 
@@ -58,7 +60,7 @@ end
 function CT_UnitFramesOptions_Radio_Update()
 	for box = 1, 4, 1 do
 		for selection = 1, CT_UnitFramesOptions_NumSelections[box], 1 do
-			for radio = 1, 4, 1 do
+			for radio = 1, 5, 1 do
 				getglobal("CT_UnitFramesOptionsFrameBox" .. box .. "Selection" .. selection .. "Radio" .. radio):Enable();
 				getglobal("CT_UnitFramesOptionsFrameBox" .. box .. "Selection" .. selection .. "Radio" .. radio .. "Name"):SetTextColor(0.7, 0.7, 0.7, 1.0);
 				getglobal("CT_UnitFramesOptionsFrameBox" .. box .. "Selection" .. selection .. "Radio" .. radio):SetChecked(false);

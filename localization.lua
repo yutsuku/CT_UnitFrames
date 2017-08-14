@@ -10,7 +10,7 @@ CT_UFO_SUBNAME = "Show Options";
 CT_UFO_TOOLTIP = "Shows the CT_UnitFrames options dialog, where you can modify its settings.";
 
 -- UnitFramesOptions
-CT_UFO_RADIO = { "None", "Percent", "Deficit", "Value" };
+CT_UFO_RADIO = { "None", "Percent", "Deficit", "Value", "Percent and Value" };
 CT_UFO_SELECTION = { "On Health Bar:", "Right of Health Bar:", "On Mana Bar:", "Right of Mana Bar:" };
 CT_UFO_BOX = { "Player", "Party", "Target", "Target of Target" };
 CT_UFO_TARGETCLASS = "Display Target's Class";

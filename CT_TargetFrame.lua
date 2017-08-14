@@ -50,6 +50,17 @@ function CT_TargetFrame_GetHealth(id)
 		return deficit;
 	elseif ( id == 4 ) then
 		return ( UnitHealth("target") or "?" ) .. "/" .. ( UnitHealthMax("target") or "?" );
+	elseif ( id == 5 ) then
+		local hp = UnitHealth("target") or 1
+		local percent = ceil( hp / ( UnitHealthMax("target") or 1)*100)
+		if percent == 100 or percent < 2 then percent = "" else percent = percent .. "%" end
+		if hp > 1000000 then
+			return format("%.1fm", hp / 1000000), percent
+		end
+		if hp > 1000 then
+			return ceil(hp / 1000) .. "k", percent
+		end
+		return hp, percent
 	end
 end
 
@@ -70,6 +81,17 @@ function CT_TargetFrame_GetMana(id)
 		return deficit;
 	elseif ( id == 4 ) then
 		return ( UnitMana("target") or "?" ) .. "/" .. ( UnitManaMax("target") or "?" );
+	elseif ( id == 5 ) then
+		local mana = UnitMana("target") or 1
+		local percent = ceil( mana / ( UnitManaMax("target") or 1)*100)
+		if percent == 100 or percent < 1 then percent = "" else percent = percent .. "%" end
+		if mana > 1000000 then
+			return format("%.1fm", mana / 1000000), percent
+		end
+		if mana > 1000 then
+			return ceil(mana / 1000) .. "k", percent
+		end
+		return mana, percent
 	end
 end
 
@@ -79,11 +101,24 @@ function CT_ShowTargetHealth()
 	end
 	local typeOnHealth = CT_TargetFrame_ShallDisplay(1);
 	if ( typeOnHealth > 1 ) then
+		local hp, percent = CT_TargetFrame_GetHealth(typeOnHealth);
+		if ( typeOnHealth == 5 ) then
+			CT_TargetHealthBar:SetJustifyH("LEFT");
+			CT_TargetHealthBar:SetPoint("LEFT", "TargetFrame", "TOPLEFT", 8, -47);
+			CT_TargetHealthBarPercent:SetText(percent);
+			CT_TargetHealthBarPercent:Show();
+		else
+			CT_TargetHealthBarPercent:Hide();
+			CT_TargetHealthBar:SetPoint("LEFT", "TargetFrame", "TOPLEFT", 18, -47);
+			CT_TargetHealthBar:SetJustifyH("CENTER");
+		end
 		CT_TargetHealthBar:Show();
-		CT_TargetHealthBar:SetText(CT_TargetFrame_GetHealth(typeOnHealth));
+		CT_TargetHealthBar:SetText(hp);
 	else
 		CT_TargetHealthBar:Hide();
+		CT_TargetHealthBarPercent:Hide();
 	end
+	CT_TargetHealthBarPercent:SetTextColor(CT_UnitFramesOptions.styles[3][1][2], CT_UnitFramesOptions.styles[3][1][3], CT_UnitFramesOptions.styles[3][1][4], CT_UnitFramesOptions.styles[3][1][5]);
 	CT_TargetHealthBar:SetTextColor(CT_UnitFramesOptions.styles[3][1][2], CT_UnitFramesOptions.styles[3][1][3], CT_UnitFramesOptions.styles[3][1][4], CT_UnitFramesOptions.styles[3][1][5]);
 end
 
@@ -99,11 +134,24 @@ function CT_ShowTargetMana()
 	end
 	local typeOnMana = CT_TargetFrame_ShallDisplay(2);
 	if ( typeOnMana > 0 ) then
-		CT_TargetManaBar:SetText(CT_TargetFrame_GetMana(typeOnMana));
+		local mana, percent = CT_TargetFrame_GetMana(typeOnMana);
+		if ( typeOnMana == 5 ) then
+			CT_TargetManaBar:SetJustifyH("LEFT");
+			CT_TargetManaBar:SetPoint("LEFT", "TargetFrame", "TOPLEFT", 8, -58);
+			CT_TargetManaBarPercent:SetText(percent);
+			CT_TargetManaBarPercent:Show();
+		else
+			CT_TargetManaBarPercent:Hide();
+			CT_TargetManaBar:SetPoint("LEFT", "TargetFrame", "TOPLEFT", 18, -58);
+			CT_TargetManaBar:SetJustifyH("CENTER");
+		end
+		CT_TargetManaBar:SetText(mana);
 		CT_TargetManaBar:Show();
 	else
 		CT_TargetManaBar:Hide();
+		CT_TargetManaBarPercent:Hide();
 	end
+	CT_TargetManaBarPercent:SetTextColor(CT_UnitFramesOptions.styles[3][2][2], CT_UnitFramesOptions.styles[3][2][3], CT_UnitFramesOptions.styles[3][2][4], CT_UnitFramesOptions.styles[3][2][5]);
 	CT_TargetManaBar:SetTextColor(CT_UnitFramesOptions.styles[3][2][2], CT_UnitFramesOptions.styles[3][2][3], CT_UnitFramesOptions.styles[3][2][4], CT_UnitFramesOptions.styles[3][2][5]);
 end
 

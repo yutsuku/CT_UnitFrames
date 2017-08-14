@@ -96,14 +96,23 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 					</Anchor>
 				</Anchors>
 			</CheckButton>
+			<CheckButton name="$parentRadio5" id="5" hidden="true" inherits="CT_UnitFramesOptionsRadioButtonTemplate"> <!-- Percent and value -->
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentRadio4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="40" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
 			<Button name="$parentColorSwatch">
 				<Size>
 					<AbsDimension x="16" y="16"/>
 				</Size>
 				<Anchors>
-					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentRadio4">
+					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentRadio5">
 						<Offset>
-							<AbsDimension x="40" y="0"/>
+							<AbsDimension x="100" y="0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -143,7 +152,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 	</Frame>
 	<Frame name="CT_UnitFramesOptionsBoxTemplate" virtual="true">
 		<Size>
-			<AbsDimension x="390" y="50"/>
+			<AbsDimension x="510" y="50"/>
 		</Size>
 
 		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
@@ -203,7 +212,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 
 	<Frame name="CT_UnitFramesOptionsFrame" parent="UIParent" movable="true" hidden="true">
 		<Size>
-			<AbsDimension x="430" y="450"/>
+			<AbsDimension x="550" y="450"/>
 		</Size>
 
 		<Anchors>
@@ -256,7 +265,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 
 			<Frame name="$parentBox1" id="1" inherits="CT_UnitFramesOptionsBoxTemplate">
 				<Size>
-					<AbsDimension x="390" y="95"/>
+					<AbsDimension x="510" y="95"/>
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT">
@@ -289,7 +298,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 
 			<Frame name="$parentBox2" id="2" inherits="CT_UnitFramesOptionsBoxTemplate">
 				<Size>
-					<AbsDimension x="390" y="130"/>
+					<AbsDimension x="510" y="130"/>
 				</Size>
 				<Anchors>
 					<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parentBox1">
@@ -347,7 +356,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 			
 			<Frame name="$parentBox3" id="3" inherits="CT_UnitFramesOptionsBoxTemplate">
 				<Size>
-					<AbsDimension x="390" y="70"/>
+					<AbsDimension x="510" y="70"/>
 				</Size>
 				<Anchors>
 					<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parentBox2">
