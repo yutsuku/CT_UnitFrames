@@ -53,13 +53,28 @@ function CT_TargetFrame_GetHealth(id)
 	elseif ( id == 5 ) then
 		local hp = UnitHealth("target") or 1
 		local percent = ceil( hp / ( UnitHealthMax("target") or 1)*100)
-		if percent == 100 or percent < 2 then percent = "" else percent = percent .. "%" end
+		
+		if percent == 100 or percent < 2 then
+			percent = ""
+		else
+			percent = percent .. "%"
+		end
+		
 		if hp > 1000000 then
 			return format("%.1fm", hp / 1000000), percent
+		elseif hp > 1000 then
+			hp = hp / 1000
+			local r = math.fmod(hp, 1)
+			
+			if r > 0.5 then
+				return ceil(hp).."k", percent
+			elseif r < 0.5 then
+				return floor(hp).."k", percent
+			else
+				return hp.."k", percent
+			end
 		end
-		if hp > 1000 then
-			return ceil(hp / 1000) .. "k", percent
-		end
+		
 		return hp, percent
 	end
 end
@@ -84,13 +99,28 @@ function CT_TargetFrame_GetMana(id)
 	elseif ( id == 5 ) then
 		local mana = UnitMana("target") or 1
 		local percent = ceil( mana / ( UnitManaMax("target") or 1)*100)
-		if percent == 100 or percent < 1 then percent = "" else percent = percent .. "%" end
+		
+		if percent == 100 or percent < 1 then
+			percent = ""
+		else
+			percent = percent .. "%"
+		end
+		
 		if mana > 1000000 then
 			return format("%.1fm", mana / 1000000), percent
+		elseif mana > 1000 then
+			mana = mana / 1000
+			local r = math.fmod(mana, 1)
+			
+			if r > 0.5 then
+				return ceil(mana).."k", percent
+			elseif r < 0.5 then
+				return floor(mana).."k", percent
+			else
+				return mana.."k", percent
+			end
 		end
-		if mana > 1000 then
-			return ceil(mana / 1000) .. "k", percent
-		end
+		
 		return mana, percent
 	end
 end
