@@ -32,14 +32,15 @@ end
 
 function CT_TargetFrame_GetHealth(id)
 	if ( not UnitExists("target") or not UnitExists("player") ) then
-		return "";
+		return "", "";
 	end
 	if ( UnitHealth("target") <= 0 and UnitIsConnected("target") ) then
-		return "";
+		return "", "";
 	end
 	if ( UnitHealthMax("target") == 100 ) then
 		id = 2;
 	end
+	
 	if ( id == 2 ) then
 		return floor(( UnitHealth("target") or 1 ) / ( UnitHealthMax("target") or 1)*100) .. "%";
 	elseif ( id == 3 ) then
@@ -51,10 +52,14 @@ function CT_TargetFrame_GetHealth(id)
 	elseif ( id == 4 ) then
 		return ( UnitHealth("target") or "?" ) .. "/" .. ( UnitHealthMax("target") or "?" );
 	elseif ( id == 5 ) then
+		if not UnitIsConnected("target") then
+			return "", ""
+		end
+		
 		local hp = UnitHealth("target") or 1
 		local percent = ceil( hp / ( UnitHealthMax("target") or 1)*100)
 		
-		if percent == 100 or percent < 2 then
+		if percent == 100 or percent < 1 then
 			percent = ""
 		else
 			percent = percent .. "%"
