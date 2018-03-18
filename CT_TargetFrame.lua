@@ -69,7 +69,7 @@ function CT_TargetFrame_GetHealth(id)
 			return format("%.1fm", hp / 1000000), percent
 		elseif hp > 1000 then
 			hp = hp / 1000
-			local r = math.fmod(hp, 1)
+			local r = math.mod(hp, 1)
 			
 			if r > 0.5 then
 				return ceil(hp).."k", percent
@@ -115,7 +115,7 @@ function CT_TargetFrame_GetMana(id)
 			return format("%.1fm", mana / 1000000), percent
 		elseif mana > 1000 then
 			mana = mana / 1000
-			local r = math.fmod(mana, 1)
+			local r = math.mod(mana, 1)
 			
 			if r > 0.5 then
 				return ceil(mana).."k", percent
